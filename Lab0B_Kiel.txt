@@ -1,0 +1,46 @@
+***********************************************************************
+MTE 241 Lab0B - Introduction to ARM RL-RTX Kernel and Application Programming
+
+Lab0B Assigment Questions
+
+Michael Daniel Werezak 20303777
+Mathew Mendelsohn 20416425
+
+***********************************************************************
+
+
+
+Q1. The RTX_Config.h has a list of variables externally defined in RTX_lib.c file, which
+is located at ARM\RV31\INC under the default Keil installation directory. What does
+os_active_TCB array contain?
+
+The os_active_TCB array is an array of active task pointers. These pointers reference an OS_TCB data structure defined in rt_TypeDef.h.
+
+Q2. Is the os_idle_daemon an element in the os_active_TCB?
+
+Executing the following code snippet:
+
+	for (i = 0; i < os_maxtaskrun; i++) {
+		printf("os_active_TCB[%d]: %d, is_os_idle_demon=%d\n", i, os_active_TCB[i], os_active_TCB[i] == &os_idle_demon);
+	}
+
+Produced the results:
+
+	os_active_TCB[0]: 268435532, is_os_idle_demon=0
+	os_active_TCB[1]: 268435580, is_os_idle_demon=0
+	os_active_TCB[2]: 268435628, is_os_idle_demon=0
+	os_active_TCB[3]: 0, is_os_idle_demon=0
+	os_active_TCB[4]: 0, is_os_idle_demon=0
+	os_active_TCB[5]: 0, is_os_idle_demon=0
+	
+which shows that os_idle_demon is not an element of os_active_TCB.
+
+Q3. For a task with task ID n, what is the index of this task’s TCB in the array
+os_active_TCB?
+
+Task IDs appear to be defined using the OS_TID type, which is an unsigned integer. The index of the task's TCB is this integer value minus one. Therefore the index is n-1.
+
+
+
+
+
