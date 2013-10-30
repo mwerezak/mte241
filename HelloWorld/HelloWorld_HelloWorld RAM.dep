@@ -1,0 +1,37 @@
+Dependencies for Project 'HelloWorld', Target 'HelloWorld RAM': (DO NOT MODIFY !)
+F (.\src\startup_LPC17xx.s)(0x525ECD85)(--cpu Cortex-M3 -g --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx --list ".\build\RAM\lst\startup_LPC17xx.lst" --xref -o ".\build\RAM\startup_LPC17xx.o" --depend ".\build\RAM\startup_LPC17xx.d")
+F (.\src\system_LPC17xx.c)(0x525ECD85)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -DRAM -o ".\build\RAM\system_lpc17xx.o" --omf_browse ".\build\RAM\system_lpc17xx.crf" --depend ".\build\RAM\system_lpc17xx.d")
+I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB17B44)
+I (C:\Software\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.h)(0x4FF5A98C)
+I (C:\Software\Keil\ARM\CMSIS\Include\core_cm3.h)(0x5006D242)
+I (C:\Software\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x505A054C)
+I (C:\Software\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB3D1C)
+I (C:\Software\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h)(0x4F58EE42)
+F (.\src\uart_polling.c)(0x525ECD85)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -DRAM -o ".\build\RAM\uart_polling.o" --omf_browse ".\build\RAM\uart_polling.crf" --depend ".\build\RAM\uart_polling.d")
+I (C:\Software\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.h)(0x4FF5A98C)
+I (C:\Software\Keil\ARM\CMSIS\Include\core_cm3.h)(0x5006D242)
+I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB17B44)
+I (C:\Software\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x505A054C)
+I (C:\Software\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB3D1C)
+I (C:\Software\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h)(0x4F58EE42)
+I (src\uart_polling.h)(0x525ECD85)
+F (..\Startup\Retarget.c)(0x525ECD86)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -DRAM -o ".\build\RAM\retarget.o" --omf_browse ".\build\RAM\retarget.crf" --depend ".\build\RAM\retarget.d")
+I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB17B46)
+I (C:\Software\Keil\ARM\ARMCC\bin\..\include\rt_misc.h)(0x4EB17B40)
+I (..\Startup\uart_polling.h)(0x525ECD86)
+I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB17B44)
+F (..\Startup\RTX_Conf_CM.c)(0x525ECD86)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -DRAM -o ".\build\RAM\rtx_conf_cm.o" --omf_browse ".\build\RAM\rtx_conf_cm.crf" --depend ".\build\RAM\rtx_conf_cm.d")
+I (C:\Software\Keil\ARM\RV31\INC\RTL.h)(0x504DE9BC)
+I (C:\Software\Keil\ARM\RV31\INC\RTX_lib.c)(0x5050CB38)
+F (.\src\main.c)(0x525EE9B6)(-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I C:\Software\Keil\ARM\RV31\INC -I C:\Software\Keil\ARM\CMSIS\Include -I C:\Software\Keil\ARM\Inc\NXP\LPC17xx -DRAM -o ".\build\RAM\main.o" --omf_browse ".\build\RAM\main.crf" --depend ".\build\RAM\main.d")
+I (C:\Software\Keil\ARM\Inc\NXP\LPC17xx\LPC17xx.h)(0x4FF5A98C)
+I (C:\Software\Keil\ARM\CMSIS\Include\core_cm3.h)(0x5006D242)
+I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdint.h)(0x4EB17B44)
+I (C:\Software\Keil\ARM\CMSIS\Include\core_cmInstr.h)(0x505A054C)
+I (C:\Software\Keil\ARM\CMSIS\Include\core_cmFunc.h)(0x4FDB3D1C)
+I (C:\Software\Keil\ARM\Inc\NXP\LPC17xx\system_LPC17xx.h)(0x4F58EE42)
+I (C:\Software\Keil\ARM\ARMCC\bin\..\include\stdio.h)(0x4EB17B46)
+I (src\../../RTX_CM3/INC/RTL.h)(0x525EE3DD)
+I (src\uart_polling.h)(0x525ECD85)
+F (.\abstract.txt)(0x525ECD85)()
+F (..\RTX_CM3\CM3_LE\RTX_CM3.lib)(0x525EF0BD)()

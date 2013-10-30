@@ -47,7 +47,7 @@ typedef struct OS_TCB {
   U8     ret_upd;                 /* Updated return value                    */
   U16    priv_stack;              /* Private stack size, 0= system assigned  */
   U32    tsk_stack;               /* Current task Stack pointer (R13)        */
-  U32    *stack;                  /* Pointer to Task Stack memory block      */
+  U32    *stack;                  /* Pointer to Task Stack memory block (bottom of the stack) */
 
   /* Task entry point used for uVision debugger                              */
   FUNCP  ptask;                   /* Task entry address                      */
@@ -130,6 +130,16 @@ typedef struct OS_BM {
   void *end;                      /* Pointer to memory block end             */
   U32  blk_size;                  /* Memory block size                       */
 } *P_BM;
+
+/* This is for communicating information about tasks. */
+typedef struct rl_task_info {
+  U8 state;         /* Task state */
+  U8 prio;          /* Execution priority */
+  U8 task_id;       /* Task ID value for optimized TCB access */
+  U8 stack_usage;   /* Stack usage percent value. eg.=58 if 58% */
+  void (*ptask)();  /* Task entry address */
+} RL_TASK_INFO;
+
 
 /* Definitions */
 #define __TRUE          1

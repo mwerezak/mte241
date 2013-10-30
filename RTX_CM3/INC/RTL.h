@@ -8,7 +8,7 @@
  *      This code is part of the RealView Run-Time Library.
  *      Copyright (c) 2004-2012 KEIL - An ARM Company. All rights reserved.
  *---------------------------------------------------------------------------*/
-
+ 
 #ifndef __RTL_H__
 #define __RTL_H__
 
@@ -652,12 +652,17 @@ extern HOSTENT *gethostbyname (const char *name, int *err);
  * MTE 241
  *---------------------------------------------------------------------------*/
 
-extern int rt_tsk_count_get (void);
+/* Types */
+
+/* This is for communicating information about tasks. */
+typedef struct rl_task_info {
+  U8 state;         /* Task state */
+  U8 prio;          /* Execution priority */
+  U8 task_id;       /* Task ID value for optimized TCB access */
+  U8 stack_usage;   /* Stack usage percent value. eg.=58 if 58% */
+  void (*ptask)();  /* Task entry address */
+} RL_TASK_INFO;
  
-#define os_tsk_count_get()	_os_tsk_count_get((U32)rt_tsk_count_get)
-
-extern int _os_tsk_count_get (U32 p) __SVC_0;
-
 /* Variables */
 extern U32 mp_tcb[];
 extern U64 mp_stk[];
@@ -677,6 +682,18 @@ extern U32 const mp_stk_size;
 extern U32 const *m_tmr;
 extern U16 const mp_tmr_size;
 extern U8  const os_fifo_size;
+
+
+extern int rt_tsk_count_get (void);
+extern OS_RESULT rt_tsk_get (OS_TID task_id, RL_TASK_INFO *buffer);
+ 
+#define os_tsk_count_get()	_os_tsk_count_get((U32)rt_tsk_count_get)
+#define os_tsk_get(task_id, ptr_buffer) _os_tsk_get((U32)rt_tsk_get, task_id, ptr_buffer)
+
+extern int _os_tsk_count_get (U32 p) __SVC_0;
+extern int _os_tsk_get (U32 p, OS_TID task_id, RL_TASK_INFO *buffer) __SVC_0;
+
+
 
 
 #ifdef __cplusplus
