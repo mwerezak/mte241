@@ -22,6 +22,7 @@
 #define WAIT_SEM        7
 #define WAIT_MBX        8
 #define WAIT_MUT        9
+#define WAIT_MEM        10
 
 /* Return codes */
 #define OS_R_TMO        0x01

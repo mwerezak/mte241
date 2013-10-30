@@ -686,14 +686,18 @@ extern U8  const os_fifo_size;
 
 extern int rt_tsk_count_get (void);
 extern OS_RESULT rt_tsk_get (OS_TID task_id, RL_TASK_INFO *buffer);
+extern void* rt_mem_alloc (void *box_mem);
+extern OS_RESULT rt_mem_free (void *box_mem, void *box);
  
 #define os_tsk_count_get()	_os_tsk_count_get((U32)rt_tsk_count_get)
 #define os_tsk_get(task_id, ptr_buffer) _os_tsk_get((U32)rt_tsk_get, task_id, ptr_buffer)
+#define os_mem_alloc(box_mem) _os_mem_alloc((U32)rt_mem_alloc, box_mem)
+#define os_mem_free(box_mem, box) _os_mem_free((U32)rt_mem_free, box_mem, box)
 
 extern int _os_tsk_count_get (U32 p) __SVC_0;
 extern int _os_tsk_get (U32 p, OS_TID task_id, RL_TASK_INFO *buffer) __SVC_0;
-
-
+extern int _os_mem_alloc (U32 p, void *box_mem) __SVC_0;
+extern int _os_mem_free(U32 p, void *box_mem, void *box) __SVC_0;
 
 
 #ifdef __cplusplus

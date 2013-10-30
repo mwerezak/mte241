@@ -25,6 +25,8 @@
 struct OS_XCB  os_rdy;
 /* List head of chained delay tasks */
 struct OS_XCB  os_dly;
+/* List head of waiting tasks */
+struct OS_XCB os_wait_list;
 
 
 /*----------------------------------------------------------------------------
@@ -70,7 +72,7 @@ void rt_put_prio (P_XCB p_CB, P_TCB p_task) {
 /*--------------------------- rt_get_first ----------------------------------*/
 
 P_TCB rt_get_first (P_XCB p_CB) {
-  /* Get task at head of list: it is the task with highest priority. */
+  /* Removes and returns the task at head of list: it is the task with highest priority. */
   /* "p_CB" points to head of list. */
   P_TCB p_first;
 

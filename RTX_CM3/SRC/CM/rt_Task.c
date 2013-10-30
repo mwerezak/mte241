@@ -294,7 +294,11 @@ void rt_sys_init (FUNCP first_task, U32 prio_stksz, void *stk) {
   os_dly.p_dlnk  = NULL;
   os_dly.p_blnk  = NULL;
   os_dly.delta_time = 0;
-
+  
+  /* Set up waiting list: initially empty */
+  os_wait_list.cb_type = TCB;
+  os_wait_list.p_lnk   = NULL;
+  
   /* Fix SP and systemvariables to assume idle task is running  */
   /* Transform main program into idle task by assuming idle TCB */
   rt_set_PSP (os_idle_TCB.tsk_stack+32);

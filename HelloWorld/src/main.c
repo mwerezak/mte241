@@ -59,29 +59,22 @@ __task void task5() {
 }
 
 
-int print_task_info() {
-		int task_id = 6;
-		RL_TASK_INFO task_info;
-		int foo;
-	
-		if (os_tsk_get(task_id, &task_info) == OS_R_OK) {			
-			printf("\nTask %d State = %d\n", task_id, task_info.state);
-			printf("Task %d Stack Usage = %d\n", task_id, task_info.stack_usage);
-		} else {
-			printf("\nTask %d is no more.\n\n", task_id);
-		}
-		
-		
-		//os_dly_wait(1*TIMING_MULT);
-		
-		//foo = print_task_info() + 1;
-		
-		
-		return foo;
-
-}
-
 __task void printInfo() {
+	int task_id;
+	RL_TASK_INFO task_info;
+	
+	
+	while(1){
+	
+	for (task_id = 1; task_id <= os_maxtaskrun; task_id++) {
+		if (rt_tsk_get(task_id, &task_info) == OS_R_OK && task_info.state == 2) {			
+			printf("\nTask %d Task ID = %d\n", task_id, task_info.task_id);
+			printf("Task %d Stack Usage = %d\n", task_id, task_info.stack_usage);
+		}
+	}
+	
+	os_dly_wait(5*TIMING_MULT);
+	}
 	
 	/*
 	int task_id;
@@ -104,9 +97,6 @@ __task void printInfo() {
 		
 		os_dly_wait(6*TIMING_MULT);
 	}*/
-	
-	print_task_info();
-	
 
 }
 
@@ -125,9 +115,10 @@ __task void init(void)
 	
 	os_dly_wait(1*TIMING_MULT);
 	os_tsk_create(printInfo, 2); // printInfo at priority 1
-	
-	
+		
 	printf("init: There are %d tasks right now.\n", os_tsk_count_get());
+	
+
 	
 	os_tsk_delete_self(); // must delete itself before exiting
 }

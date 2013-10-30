@@ -471,6 +471,11 @@
               <FileType>1</FileType>
               <FilePath>.\SRC\API\taskutil.c</FilePath>
             </File>
+            <File>
+              <FileName>memory.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\SRC\API\memory.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
