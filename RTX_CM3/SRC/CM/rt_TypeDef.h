@@ -41,8 +41,8 @@ typedef struct OS_TCB {
   U16    events;                  /* Event flags                             */
   U16    waits;                   /* Wait flags                              */
   void   **msg;                   /* Direct message passing when task waits  */
-  U8     ret_val;                 /* Return value upon completion of a wait  */
-
+  /* The following variable type is changed from U8 to U32 for ECE@54 lab1   */
+  U32    ret_val;                 /* Return value upon completion of a wait  */
   /* Hardware dependant part: specific for CM processor                      */
   U8     ret_upd;                 /* Updated return value                    */
   U16    priv_stack;              /* Private stack size, 0= system assigned  */
@@ -53,8 +53,8 @@ typedef struct OS_TCB {
   FUNCP  ptask;                   /* Task entry address                      */
 } *P_TCB;
 #define TCB_RETVAL      32        /* 'ret_val' offset                        */
-#define TCB_RETUPD      33        /* 'ret_upd' offset                        */
-#define TCB_TSTACK      36        /* 'tsk_stack' offset                      */
+#define TCB_RETUPD      36        /* 'ret_upd' offset, original = 33         */
+#define TCB_TSTACK      40        /* 'tsk_stack' offset, original = 36       */
 
 typedef struct OS_PSFE {          /* Post Service Fifo Entry                 */
   void  *id;                      /* Object Identification                   */

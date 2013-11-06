@@ -48,23 +48,20 @@ U32 rt_stack_size_get (P_TCB p_tcb) {
 
 // Returns the percentage usage of a task's stack
 U8 rt_stack_usage_get (P_TCB p_tcb) {
+	int i;
   U32 *stack_start = &p_tcb->stack[0], 
       *stack_end = &p_tcb->stack[rt_stack_size_get(p_tcb)];
   U32 total_size, used_size;
-	volatile U32 start_addr, end_addr, current_addr;
+	U32 start_addr, end_addr, current_addr;
 	
 	start_addr = (U32) stack_start;
 	end_addr = (U32) stack_end;
 	total_size = end_addr - start_addr;
 	current_addr = p_tcb->tsk_stack;
-      
-  //used_size = ((U32) stack_end) - ((U32) (p_tcb->tsk_stack));
-  //total_size = ((U32) stack_end) - ((U32) stack_start);
 	
 	used_size = end_addr - current_addr;
-	
   
-  return (U8) (100*used_size)/total_size;
+  return (U8) ((100*used_size)/total_size);
 }
 
 OS_RESULT rt_tsk_get (OS_TID task_id, RL_TASK_INFO *buffer) {

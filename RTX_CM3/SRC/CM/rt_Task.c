@@ -289,6 +289,7 @@ void rt_sys_init (FUNCP first_task, U32 prio_stksz, void *stk) {
   /* Set up ready list: initially empty */
   os_rdy.cb_type = HCB;
   os_rdy.p_lnk   = NULL;
+  
   /* Set up delay list: initially empty */
   os_dly.cb_type = HCB;
   os_dly.p_dlnk  = NULL;

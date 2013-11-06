@@ -13,3 +13,4 @@
   ".\cm3_le\svc_table.o"
   ".\cm3_le\hal_cm3.o"
   ".\cm3_le\taskutil.o"
+  ".\cm3_le\memory.o"

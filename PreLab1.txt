@@ -1,0 +1,86 @@
+1. Read the rt_TypeDef.h file and answer the following questions.
+	• What are the purpose of p_lnk, p_rlnk, p_dlnk, and p_blnk variables in struct OS_TCB?
+
+	• What is the purpose of ret_val in struct OS_TCB?
+
+From rt_TypeDef.h
+  struct OS_TCB *p_lnk;           /* Link pointer for ready/sem. wait list   */
+  struct OS_TCB *p_rlnk;          /* Link pointer for sem./mbx lst backwards */
+  struct OS_TCB *p_dlnk;          /* Link pointer for delay list             */
+  struct OS_TCB *p_blnk;          /* Link pointer for delay list backwards   */
+  
+  ret_val is the return value upon completion of a wait
+  
+2. Read the rt_Task.c and RTX_lib.c files and answer the following question.
+	• What is the purpose of variables mp_tcb and mp_stack?
+  These variables are arrays used to store the memory pools for the tcb array and the stacks.
+
+3. Read the HAL_CM3.c file and answer the following questions.
+	• What registers are saved on the task stack? (Hint: check init_stack function) 
+		R0, R1-R12, LR registers (line 268)
+		
+	• How to determine the start and end address of a task stack?
+		Given a pointer to the TCB of a task, p_TCB, the end address can be found in p_TCB->stack.
+		
+		The start address of the task stack is determined by figuring out the size of the stack, and then
+		adding the offset to start address.
+		
+		Finding the size:
+		  size = p_TCB->priv_stack >> 2;
+		  if (size == 0) {
+		    size = (U16)os_stackinfo >> 2;
+		  }
+		
+		Then the start address can be found using pointer arithmetic and correcting for 8-byte ARM stack alignment.
+		  &p_TCB->stack[size];
+		  if ((U32)stk & 0x04) {
+		    stk--;
+		  }
+		
+		
+	• How to determine the current stack pointer of a task?
+		The current stack pointer is stored in the TCB:
+		  p_TCB->tsk_stack
+	
+4. Read the rt_Mailbox.c file and answer the following questions.
+	• When a task is blocked with WAIT_MBX state, it will be resumed once a message 
+	appears in the mailbox (assuming timeout value is set to 0xFFFF). What is the return 
+	code of os_mbx_wait() after the task is resumed?
+		Returns "return (OS_R_OK);" when a timeout is not hit, line 123
+		
+	• Inside the rt_mbx_wait() function, there are three return statements. The first one 
+	returns OS_R_OK. The last two return OS_R_TMO. Does this mean the answer to the 
+	question above is either OS_R_OK or OS_R_TMO? Why or why not?
+		It is OS_R_OK because if it is blocked it calls rt_block which is defined in 
+		rt_Task.c In this function is states " /* "timeout" sets a time-out value or is 
+		0xffff (=no time-out). " Since the question states there is no timeout (set to 
+		0xFFFF), it cannot return OS_R_TMO and must wait for the service to be unblocked.
+		
+5. The os_dly appears in multiple kernel files. It is an ordered list. What is the purpose 
+of variable os_dly? What criteria are used to order the items in this list? Can you use 
+os_dly list to enqueue TCBs that are waiting for memory blocks in Part B? Why or why not?
+
+	From rt_List.c:
+	  /* List head of chained delay tasks */
+	  struct OS_XCB  os_dly;
+	
+	It is of type OS_XCB and defined as:
+	  typedef struct OS_XCB {
+	    U8     cb_type;                 /* Control Block Type                      */
+	    struct OS_TCB *p_lnk;           /* Link pointer for ready/sem. wait list   */
+	    struct OS_TCB *p_rlnk;          /* Link pointer for sem./mbx lst backwards */
+	    struct OS_TCB *p_dlnk;          /* Link pointer for delay list             */
+	    struct OS_TCB *p_blnk;          /* Link pointer for delay list backwards   */
+	    U16    delta_time;              /* Time until time out                     */
+	  } *P_XCB;
+	
+	os_dly appears to be used to store tasks that have been blocked by a call to rt_block() [in rt_Task.c].
+	These tasks are stored with a timeout value that is used by rt_dec_dly() to remove tasks from os_dly
+	when the timeout expires. os_dly is updated whenever a system clock update occurs [see rt_systick()] or
+	when an application calls os_resume(sleep_time) [see RTL.h].
+	
+	It does not seem like os_dly can be used to enqueue TCBs that are waiting for memory blocks as tasks in
+	os_dly are removed according to their timeout. Tasks waiting for memory blocks do not know when they will
+	be able to resume ahead of time, instead, they are resumed once memory becomes available. For this reason
+	os_dly may not work.
+	

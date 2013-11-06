@@ -424,16 +424,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Source Code</GroupName>
-          <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Documents</GroupName>
           <Files>
             <File>
@@ -450,6 +440,16 @@
               <FileName>RTX_CM3.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\RTX_CM3\CM3_LE\RTX_CM3.lib</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Lab 1</GroupName>
+          <Files>
+            <File>
+              <FileName>lab1_main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\lab1_main.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -873,16 +873,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Source Code</GroupName>
-          <Files>
-            <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\src\main.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
           <GroupName>Documents</GroupName>
           <Files>
             <File>
@@ -899,6 +889,16 @@
               <FileName>RTX_CM3.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\RTX_CM3\CM3_LE\RTX_CM3.lib</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Lab 1</GroupName>
+          <Files>
+            <File>
+              <FileName>lab1_main.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\lab1_main.c</FilePath>
             </File>
           </Files>
         </Group>

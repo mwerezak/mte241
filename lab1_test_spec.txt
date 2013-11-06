@@ -1,0 +1,37 @@
+***********************************************************************
+MTE 241 Lab1
+
+lab1_test_spec.txt
+
+Michael Daniel Werezak 20303777
+Mathew Mendelsohn 20416425
+***********************************************************************
+
+Init Task (init):
+Initializes a memory pool and then allocates nearly all of the pool to itself.
+Then creates all of the other tasks. The task5 (lhp) is created after some delay.
+
+After creating the tasks, the init task sleeps for another delay and then frees
+all of it's memory.
+
+Task2 (status)
+This task periodically prints the status of all the tasks.
+
+Task3 (ehp)
+This task is one of the first to be created by init and has a high priority. It
+attempts to allocate most of the memory pool to itself, waits a short period of time,
+and then frees all of it's allocated memory.
+
+Task4 (elp)
+This task is one of the first to be created by init and has a low priority. It
+attempts to allocate most of the memory pool to itself, waits a short period of time,
+and then frees all of it's allocated memory.
+
+Task5 (lhp)
+This task is the last to be created by init and has a high priority. It
+attempts to allocate most of the memory pool to itself, waits a short period of time,
+and then frees all of it's allocated memory.
+
+
+We expect that all the tasks should become blocked waiting for memory until init frees 
+it's memory. Then the tasks should run in the order of Task3, Task5 and then Task4.

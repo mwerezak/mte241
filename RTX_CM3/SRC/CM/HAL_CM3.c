@@ -141,7 +141,8 @@ SVC_Restore
         MSR     PSP,R12                 ; Write PSP
 
         CBZ     R3,SVC_Return
-        LDRB    R0,[R2,#TCB_RETVAL]     ; Write os_tsk.new->ret_val
+        ;LDRB    R0,[R2,#TCB_RETVAL]     ; Write os_tsk.new->ret_val
+        LDR     R0,[R2,#TCB_RETVAL]     ; Write os_tsk.new->ret_val, U32
 
 SVC_Exit
         STR     R0,[R12]                ; Function return value
@@ -204,7 +205,8 @@ Sys_Switch
 
         LDRB    R3,[R2,#TCB_RETUPD]     ; Update ret_val?
         CBZ     R3,Sys_Exit
-        LDRB    R3,[R2,#TCB_RETVAL]     ; Write os_tsk.new->ret_val
+        ;LDRB    R3,[R2,#TCB_RETVAL]     ; Write os_tsk.new->ret_val
+        LDR    R3,[R2,#TCB_RETVAL]      ; Write os_tsk.new->ret_val, U32
         STR     R3,[R12]
 Sys_Exit
         MVN     LR,#:NOT:0xFFFFFFFD     ; set EXC_RETURN value

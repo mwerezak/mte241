@@ -10,11 +10,10 @@ void* rt_mem_alloc (void *box_mem) {
 	p_mem = rt_alloc_box(box_mem);	//attempt to allocate mem
 	
 	if (p_mem == NULL) {	//block task until mem is available
-		rt_put_prio(&os_wait_list, os_tsk);	//add the current task to waiting list
+		rt_put_prio(&os_wait_list, os_tsk.run);	//add the current task to waiting list
 		rt_block(0xffff, WAIT_MEM);		//block the running task
-	} else {
-		return p_mem;	//return the pointer
 	}
+	return p_mem;	//return the pointer
 }
 
 OS_RESULT rt_mem_free (void *box_mem, void *box) {
@@ -25,9 +24,9 @@ OS_RESULT rt_mem_free (void *box_mem, void *box) {
 		return OS_R_NOK;
 	
 	//see if there are any tasks waiting for mem
-	if (os_wait_list->p_lnk != NULL) {
-		p_task = rt_get_first(os_wait_list);
-		p_task->retval = box;
+	if (os_wait_list.p_lnk != NULL) {
+		p_task = rt_get_first(&os_wait_list);
+		p_task->ret_val = (U32) box;   //give the waiting process the memory we just freed
 		p_task->state = READY;
 		
 		rt_dispatch(p_task);

@@ -18,3 +18,5 @@ SET CPU_CLOCK=0x00B71B00
 "C:\Software\Keil\ARM\ARMCC\bin\ArmCC" --Via ".\cm3_le\hal_cm3.__i"
 "C:\Software\Keil\ARM\ARMCC\bin\ArmCC" --Via ".\cm3_le\taskutil.__i"
 "C:\Software\Keil\ARM\ARMCC\bin\ArmCC" --Via ".\cm3_le\memory.__i"
+"C:\Software\Keil\ARM\ARMCC\bin\ArmAr" --Via "ArInp.Scr"
+cmd.exe /C copy ArInp.Scr CM3_LE\BuildLib.scr
