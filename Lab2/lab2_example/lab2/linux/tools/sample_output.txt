@@ -1,0 +1,6 @@
+1 is consumed
+9 is consumed
+25 is consumed
+33 is consumed
+time to initialize system: 1.033766 seconds
+time to transmit data: 0.000746 seconds

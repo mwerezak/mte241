@@ -1,0 +1,15 @@
+This example program shows how to use the RTX Kernel mailboxes
+for task inter-communication. Because the message objects in this
+example are fixed size, the RTX Thread-Safe Fixed-Block Memory
+Allocation functions are used. They are fully reentrant and can
+be used with RTX Kernel with no restrictions.
+
+The MAILBOX example program is available for one target:
+
+Simulator: uVision Simulator for evaluation
+
+NOTE: this program written for LPC21xx devices. 
+It can be easily modified to port to LPC17xx devices.
+The main point of the sample is to show you how to use 
+mailbox facilities rather than some device specific functions.
+
